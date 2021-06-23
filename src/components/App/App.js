@@ -18,7 +18,17 @@ import './App.css'
       playListTracks:[{name:'playListName1',artist:'playListArtist',album:'playListAlbum',id:5},
     {name:'playListName2',artist:'playListArtist1',album:'playListAlbum1',id:6}]
     }
+    this.addTrack = this.addTrack.bind(this)
   }
+  addTrack(track){
+    let tracks = this.state.playListTracks
+    if(tracks.find(savedTracks => savedTracks.id === track.id)){
+      return
+    }
+    tracks.push(track)
+    this.setState({playListTracks:tracks})
+  }
+
   render() {
     return (
       <div>
@@ -28,7 +38,7 @@ import './App.css'
         <div class='App'>
           <Search />
           <div className='App-playlist'>
-            <SearchResults searchResults={this.state.searchResults} />
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <PlayList playListName={this.state.playListName}
              playListTracks={this.state.playListTracks}/>
           </div> 
