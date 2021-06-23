@@ -4,25 +4,34 @@ import SearchResults from '../SearchResults/SearchResults'
 import PlayList from '../PlayList/PlayList'
 import './App.css'
 
-export class App extends Component {
+ class App extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
-      searchResults: [],
+      searchResults: [
+        {name:'name1',artist:'artist1',album:'album1',id:1},
+        {name:'name2',artist:'artist2',album:'album2',id:21},
+        {name:'name3',artist:'artist3',album:'album3',id:32}
+      ],
+      playListName:'My PlayList',
+      playListTracks:[{name:'playListName1',artist:'playListArtist',album:'playListAlbum',id:5},
+    {name:'playListName2',artist:'playListArtist1',album:'playListAlbum1',id:6}]
     }
   }
   render() {
     return (
       <div>
-        <h1>
+        <h1>Ja
           <span className='highlight'>mmm</span>ing
         </h1>
         <div class='App'>
           <Search />
           <div className='App-playlist'>
             <SearchResults searchResults={this.state.searchResults} />
-            <PlayList />
-          </div>
+            <PlayList playListName={this.state.playListName}
+             playListTracks={this.state.playListTracks}/>
+          </div> 
         </div>
       </div>
     )

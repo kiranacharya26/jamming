@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 import './Track.css'
 
-export class Track extends Component {
+ class Track extends Component {
+  renderFunction(){
+    if(this.props.isRemoval){
+      return <button className="Track-action">-</button>
+    }else{
+      return <button className="Track-action">+</button>
+    }
+  }
   render() {
     return (
       <div className='Track'>
         <div className='Track-information'>
-          <h3></h3>
-          <p></p>
+          <h3>{this.props.track.name}</h3>
+          <p>{this.props.track.artist} | {this.props.track.album}</p>
         </div>
-        <button className='Track-action'></button>
+        {this.renderFunction()}
       </div>
     )
   }
