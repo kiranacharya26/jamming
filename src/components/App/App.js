@@ -3,6 +3,7 @@ import Search from '../Search/Search'
 import SearchResults from '../SearchResults/SearchResults'
 import PlayList from '../PlayList/PlayList'
 import './App.css'
+import Track from '../Track/Track'
 
  class App extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ import './App.css'
     {name:'playListName2',artist:'playListArtist1',album:'playListAlbum1',id:6}]
     }
     this.addTrack = this.addTrack.bind(this)
+    this.removeTrack = this.removeTrack.bind(this)
   }
   addTrack(track){
     let tracks = this.state.playListTracks
@@ -28,7 +30,12 @@ import './App.css'
     tracks.push(track)
     this.setState({playListTracks:tracks})
   }
+  removeTrack(track){
+    let tracks = this.state.playListTracks
+    tracks.filter(curTrack => curTrack.id !== track.id)
 
+    this.setState({playListTracks:tracks})
+  }
   render() {
     return (
       <div>
@@ -40,7 +47,7 @@ import './App.css'
           <div className='App-playlist'>
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <PlayList playListName={this.state.playListName}
-             playListTracks={this.state.playListTracks}/>
+             playListTracks={this.state.playListTracks} onRemove={this.removeTrack}/>
           </div> 
         </div>
       </div>
