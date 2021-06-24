@@ -21,6 +21,7 @@ import Track from '../Track/Track'
     }
     this.addTrack = this.addTrack.bind(this)
     this.removeTrack = this.removeTrack.bind(this)
+    this.updatePlaylistName = this.updatePlaylistName.bind(this)
   }
   addTrack(track){
     let tracks = this.state.playListTracks
@@ -36,6 +37,9 @@ import Track from '../Track/Track'
 
     this.setState({playListTracks:tracks})
   }
+  updatePlaylistName(name){
+    this.setState({playListName:name})
+  }
   render() {
     return (
       <div>
@@ -47,7 +51,8 @@ import Track from '../Track/Track'
           <div className='App-playlist'>
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <PlayList playListName={this.state.playListName}
-             playListTracks={this.state.playListTracks} onRemove={this.removeTrack}/>
+             playListTracks={this.state.playListTracks} onRemove={this.removeTrack}
+             onNameChange={this.updatePlaylistName}/>
           </div> 
         </div>
       </div>
