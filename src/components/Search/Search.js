@@ -4,6 +4,10 @@ import './Search.css'
  class Search extends Component {
    constructor(props){
      super(props)
+
+     this.state = {
+       term:''
+   }
      this.Search=this.Search.bind(this)
      this.handleTermChange = this.handleTermChange.bind(this)
    }
