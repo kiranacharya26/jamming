@@ -11,14 +11,9 @@ import Spotify from '../../util/Spotify'
     super(props)
 
     this.state = {
-      searchResults: [
-        {name:'name1',artist:'artist1',album:'album1',id:1},
-        {name:'name2',artist:'artist2',album:'album2',id:21},
-        {name:'name3',artist:'artist3',album:'album3',id:32}
-      ],
+      searchResults: [],
       playListName:'My PlayList',
-      playListTracks:[{name:'playListName1',artist:'playListArtist',album:'playListAlbum',id:5},
-    {name:'playListName2',artist:'playListArtist1',album:'playListAlbum1',id:6}]
+      playListTracks:[]
     }
     this.addTrack = this.addTrack.bind(this)
     this.removeTrack = this.removeTrack.bind(this)
@@ -46,6 +41,12 @@ import Spotify from '../../util/Spotify'
   savePlaylist(){
     
     const trackURIs = this.state.playListTracks.map(track=>track.uri)
+    Spotify.savePlayList(this.state.playListName,  trackURIs).then(()=>{
+      this.setState({
+        playListName:'New playlist',
+        playListTracks:[]
+      })
+    })
   }
   search(term){
     Spotify.search(term).then(searchResults=>{
