@@ -22,6 +22,7 @@ import Track from '../Track/Track'
     this.addTrack = this.addTrack.bind(this)
     this.removeTrack = this.removeTrack.bind(this)
     this.updatePlaylistName = this.updatePlaylistName.bind(this)
+    this.savePlaylist=this.savePlaylist.bind(this)
   }
   addTrack(track){
     let tracks = this.state.playListTracks
@@ -40,6 +41,10 @@ import Track from '../Track/Track'
   updatePlaylistName(name){
     this.setState({playListName:name})
   }
+  savePlaylist(){
+    
+    const trackURIs = this.state.playListTracks.map(track=>track.uri)
+  }
   render() {
     return (
       <div>
@@ -52,7 +57,8 @@ import Track from '../Track/Track'
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <PlayList playListName={this.state.playListName}
              playListTracks={this.state.playListTracks} onRemove={this.removeTrack}
-             onNameChange={this.updatePlaylistName}/>
+             onNameChange={this.updatePlaylistName}
+             onSave={this.savePlaylist}/>
           </div> 
         </div>
       </div>
