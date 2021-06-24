@@ -23,6 +23,7 @@ import Track from '../Track/Track'
     this.removeTrack = this.removeTrack.bind(this)
     this.updatePlaylistName = this.updatePlaylistName.bind(this)
     this.savePlaylist=this.savePlaylist.bind(this)
+    this.search=this.search.bind(this)
   }
   addTrack(track){
     let tracks = this.state.playListTracks
@@ -45,6 +46,9 @@ import Track from '../Track/Track'
     
     const trackURIs = this.state.playListTracks.map(track=>track.uri)
   }
+  search(term){
+    console.log(term);
+  }
   render() {
     return (
       <div>
@@ -52,7 +56,7 @@ import Track from '../Track/Track'
           <span className='highlight'>mmm</span>ing
         </h1>
         <div class='App'>
-          <Search />
+          <Search onSearch={this.search}/>
           <div className='App-playlist'>
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <PlayList playListName={this.state.playListName}
